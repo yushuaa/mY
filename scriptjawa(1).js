@@ -1,19 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
   const themeToggleButton = document.getElementById("theme-toggle");
+  const savedTheme = localStorage.getItem("portfolio-theme");
+  if (savedTheme === "light") {
+    document.body.classList.add("light");
+  }
+  themeToggleButton.setAttribute("aria-pressed", String(savedTheme === "light"));
+  themeToggleButton.setAttribute(
+    "aria-label",
+    savedTheme === "light" ? "Switch to dark theme" : "Switch to light theme",
+  );
 
-  // Set the initial theme
-  document.body.classList.add("light");
-  themeToggleButton.setAttribute("aria-pressed", "false");
-
-  // Add event listener to the button
   themeToggleButton.addEventListener("click", () => {
-    if (document.body.classList.contains("light")) {
-      document.body.classList.replace("light", "dark");
-      themeToggleButton.setAttribute("aria-pressed", "true");
-    } else {
-      document.body.classList.replace("dark", "light");
-      themeToggleButton.setAttribute("aria-pressed", "false");
-    }
+    const isLight = document.body.classList.toggle("light");
+    themeToggleButton.setAttribute("aria-pressed", String(isLight));
+    themeToggleButton.setAttribute(
+      "aria-label",
+      isLight ? "Switch to dark theme" : "Switch to light theme",
+    );
+    localStorage.setItem("portfolio-theme", isLight ? "light" : "dark");
   });
 });
 
