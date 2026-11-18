@@ -3,13 +3,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Set the initial theme
   document.body.classList.add("light");
+  themeToggleButton.setAttribute("aria-pressed", "false");
 
   // Add event listener to the button
   themeToggleButton.addEventListener("click", () => {
     if (document.body.classList.contains("light")) {
       document.body.classList.replace("light", "dark");
+      themeToggleButton.setAttribute("aria-pressed", "true");
     } else {
       document.body.classList.replace("dark", "light");
+      themeToggleButton.setAttribute("aria-pressed", "false");
     }
   });
 });

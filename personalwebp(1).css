@@ -25,35 +25,84 @@ body.dark {
 }
 
 #theme-toggle {
-  height: 1.8rem;
-  width: 1.8rem ;
-  top: 10px;
-  left: 10px;
+  width: 135px;
+  height: 47px;
+  top: 14px;
+  left: 14px;
   z-index: 1000;
-  stroke: currentColor;
-  fill: currentColor;
   position: fixed;
   border: none;
-  transition: 0.3s;
-  border-radius: 7px;
-  backdrop-filter: blur(4px); /* Efek blur 4px */
+  padding: 0;
+  overflow: hidden;
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+#theme-toggle:hover {
+  transform: scale(1.04);
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.28);
+}
+#theme-toggle:focus-visible {
+  outline: 3px solid #54c6d6;
+  outline-offset: 4px;
+}
+#theme-toggle .theme-scene {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+#theme-toggle .theme-day-sky,
+#theme-toggle .theme-night-sky,
+#theme-toggle .theme-stars,
+#theme-toggle .theme-sun,
+#theme-toggle .theme-moon,
+#theme-toggle .theme-cloud,
+#theme-toggle .theme-hill {
+  transition: opacity 0.45s ease, transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+#theme-toggle .theme-night-sky,
+#theme-toggle .theme-stars,
+#theme-toggle .theme-moon,
+#theme-toggle .theme-hill {
+  opacity: 0;
+}
+#theme-toggle .theme-moon {
+  transform: translateX(-58px);
+}
+#theme-toggle .theme-cloud-two {
+  transform: translateX(-8px);
+}
+body.dark #theme-toggle .theme-day-sky,
+body.dark #theme-toggle .theme-sun,
+body.dark #theme-toggle .theme-cloud {
+  opacity: 0;
+}
+body.dark #theme-toggle .theme-night-sky,
+body.dark #theme-toggle .theme-stars,
+body.dark #theme-toggle .theme-moon,
+body.dark #theme-toggle .theme-hill {
+  opacity: 1;
+}
+body.dark #theme-toggle .theme-moon {
+  transform: translateX(0);
+}
+body.dark #theme-toggle .theme-cloud {
+  transform: translateX(38px);
 }
 
-body.light #theme-toggle {
-  color: #000000;
-  background-color: rgba(255, 255, 255, 0.2); /* Transparansi 50% (rgba: red, green, blue, alpha) */
-  transition: transform 0.5s ease;
-}
-body.light #theme-toggle:hover {
-  transform: scale(1.05);
-}
-body.dark #theme-toggle {
-color: #ffffff;
-background-color: rgba(0, 0, 0, 0.2); /* Transparansi 50% (rgba: red, green, blue, alpha) */
-transition: transform 0.5s ease;
-}
-body.dark #theme-toggle:hover {
-  transform: scale(1.05);
+@media (prefers-reduced-motion: reduce) {
+  #theme-toggle,
+  #theme-toggle .theme-day-sky,
+  #theme-toggle .theme-night-sky,
+  #theme-toggle .theme-stars,
+  #theme-toggle .theme-sun,
+  #theme-toggle .theme-moon,
+  #theme-toggle .theme-cloud,
+  #theme-toggle .theme-hill {
+    transition: none;
+  }
 }
 
 .header {
