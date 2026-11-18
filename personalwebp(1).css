@@ -13,7 +13,7 @@ body {
   text-align: center;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
-  cursor: url('Normal-selectGIF.gif'), auto;
+  
 }
 body.light {
   background-color: var(--background-color-light);
@@ -95,7 +95,7 @@ body.dark #theme-toggle:hover {
 }
 .social-media  {
   margin: 20px 0;
-  
+
 }
 .instagram {
   display: inline-block;
