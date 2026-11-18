@@ -168,6 +168,9 @@ body.dark #theme-toggle:hover {
   color: rgb(0, 3, 51);
   fill: currentColor;
 }
+body.dark .svg-github {
+  color: #ffffff;
+}
 nav a {
   font-size: 2rem;
   color: currentColor;
