@@ -25,8 +25,8 @@ body.dark {
 }
 
 #theme-toggle {
-  width: 135px;
-  height: 47px;
+  width: 67px;
+  height: 29px;
   top: 14px;
   left: 14px;
   z-index: 1000;
@@ -53,54 +53,41 @@ body.dark {
   width: 100%;
   height: 100%;
 }
-#theme-toggle .theme-day-sky,
-#theme-toggle .theme-night-sky,
-#theme-toggle .theme-stars,
+#theme-toggle .theme-indicator,
 #theme-toggle .theme-sun,
-#theme-toggle .theme-moon,
-#theme-toggle .theme-cloud,
-#theme-toggle .theme-hill {
-  transition: opacity 0.45s ease, transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-#theme-toggle .theme-night-sky,
-#theme-toggle .theme-stars,
-#theme-toggle .theme-moon,
-#theme-toggle .theme-hill {
-  opacity: 0;
-}
 #theme-toggle .theme-moon {
-  transform: translateX(-58px);
+  transition: transform 0.45s cubic-bezier(0.22, 0.8, 0.25, 1), opacity 0.35s ease;
 }
-#theme-toggle .theme-cloud-two {
-  transform: translateX(-8px);
-}
-body.dark #theme-toggle .theme-day-sky,
-body.dark #theme-toggle .theme-sun,
-body.dark #theme-toggle .theme-cloud {
-  opacity: 0;
-}
-body.dark #theme-toggle .theme-night-sky,
-body.dark #theme-toggle .theme-stars,
-body.dark #theme-toggle .theme-moon,
-body.dark #theme-toggle .theme-hill {
-  opacity: 1;
-}
-body.dark #theme-toggle .theme-moon {
+#theme-toggle .theme-indicator {
   transform: translateX(0);
 }
-body.dark #theme-toggle .theme-cloud {
-  transform: translateX(38px);
+#theme-toggle .theme-sun {
+  transform-origin: 58px 58px;
+}
+#theme-toggle .theme-moon {
+  transform-origin: 210px 58px;
+  opacity: 0.72;
+}
+body.dark #theme-toggle .theme-indicator {
+  transform: translateX(152px);
+}
+body.dark #theme-toggle .theme-sun {
+  transform: scale(0.88);
+  opacity: 0.78;
+}
+body.dark #theme-toggle .theme-moon {
+  transform: rotate(-12deg) scale(1.08);
+  opacity: 1;
+}
+body.dark #theme-toggle {
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
 @media (prefers-reduced-motion: reduce) {
   #theme-toggle,
-  #theme-toggle .theme-day-sky,
-  #theme-toggle .theme-night-sky,
-  #theme-toggle .theme-stars,
+  #theme-toggle .theme-indicator,
   #theme-toggle .theme-sun,
-  #theme-toggle .theme-moon,
-  #theme-toggle .theme-cloud,
-  #theme-toggle .theme-hill {
+  #theme-toggle .theme-moon {
     transition: none;
   }
 }
