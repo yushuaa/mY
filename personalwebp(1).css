@@ -514,18 +514,78 @@ h2 {
   position: absolute;
   top: 31px;
   right: 24px;
+  width: 42px;
+  height: 42px;
   color: var(--accent);
-  font-family: "DM Mono", monospace;
-  font-size: 29px;
+  overflow: visible;
+  transition: filter 0.25s ease, transform 0.3s ease;
 }
 
-.interest-sound .interest-icon {
+.interest-icon path {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.interest-projects .interest-icon {
   color: var(--pink);
-  font-size: 39px;
 }
 
 .interest-visual .interest-icon {
   color: var(--lavender);
+}
+
+.interest-card:hover .interest-icon,
+.interest-card:focus-within .interest-icon {
+  filter: drop-shadow(0 0 8px currentColor);
+}
+
+.interest-card:hover .icon-code,
+.interest-card:focus-within .icon-code {
+  animation: code-nudge 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.icon-project-frame {
+  opacity: 0.5;
+}
+
+.icon-project-trend {
+  stroke-dasharray: 39;
+  stroke-dashoffset: 39;
+  transition: stroke-dashoffset 0.45s ease;
+}
+
+.interest-card:hover .icon-project-trend,
+.interest-card:focus-within .icon-project-trend {
+  stroke-dashoffset: 0;
+}
+
+.icon-sparkle-main,
+.icon-sparkle-small {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.icon-sparkle-small {
+  opacity: 0.65;
+}
+
+.interest-card:hover .icon-sparkle-main,
+.interest-card:focus-within .icon-sparkle-main {
+  transform: rotate(45deg) scale(1.08);
+}
+
+.interest-card:hover .icon-sparkle-small,
+.interest-card:focus-within .icon-sparkle-small {
+  transform: rotate(-45deg) scale(1.15);
+}
+
+@keyframes code-nudge {
+  35% { transform: translateY(-4px) rotate(-5deg); }
+  70% { transform: translateY(1px) rotate(3deg); }
 }
 
 .card-kicker {
