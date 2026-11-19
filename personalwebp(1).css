@@ -422,7 +422,6 @@ h1 {
 
 .section-heading .eyebrow,
 .section-topline .eyebrow,
-.listen-copy .eyebrow,
 .connect-section .eyebrow {
   margin-bottom: 24px;
 }
@@ -557,173 +556,160 @@ h2 {
   font-size: 16px;
 }
 
-.listen-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 36px;
-  margin-bottom: 100px;
-  padding: 40px clamp(24px, 6vw, 70px);
+.projects-section {
+  padding-top: 82px;
+  padding-bottom: 86px;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 34px;
+}
+
+.project-card {
+  min-width: 0;
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 12px;
   background: var(--panel);
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-.listen-copy h2 {
-  font-size: clamp(30px, 3.5vw, 43px);
+.project-card:hover {
+  transform: translateY(-5px);
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
 }
 
-.listen-copy > p:last-child {
-  max-width: 340px;
-  margin: 17px 0 0;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.7;
+.project-featured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
 }
 
-.music-card {
-  --cover: 86px;
-  --mc-title: var(--text);
-  --mc-artist: var(--muted);
-  --mc-btn-bg: var(--panel-soft);
-  --mc-btn-bg-hover: var(--line);
-  --mc-btn-icon: var(--text);
-  --mc-cover-ring: var(--line);
-  --mc-slide: 0.5s cubic-bezier(0.22, 0.9, 0.3, 1);
-  display: flex;
-  width: min(100%, 390px);
-  flex: none;
-  align-items: center;
-  padding: 0;
-  text-align: left;
-  font-family: "Manrope", sans-serif;
-}
-
-.mc-art {
+.project-preview {
   position: relative;
-  flex: none;
-  width: var(--cover);
-  height: var(--cover);
+  min-height: 330px;
+  overflow: hidden;
+  border-right: 1px solid var(--line);
+  background: var(--panel-soft);
 }
 
-.mc-cover {
-  position: relative;
-  z-index: 2;
+.project-card:not(.project-featured) .project-preview {
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 5 / 3;
+  border-right: 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.project-preview img {
   display: block;
   width: 100%;
   height: 100%;
-  border-radius: 8px;
   object-fit: cover;
-  box-shadow: 0 0 0 1px var(--mc-cover-ring);
+  object-position: center;
+  transition: transform 0.5s ease;
 }
 
-.mc-vinyl-slide {
+.project-featured .project-preview {
+  border-right: 1px solid var(--line);
+  border-bottom: 0;
+}
+
+.project-featured:hover .project-preview img {
+  transform: scale(1.025);
+}
+
+.project-status {
   position: absolute;
-  z-index: 1;
-  top: 50%;
-  left: calc(var(--cover) * 0.308);
-  width: calc(var(--cover) * 0.89);
-  height: calc(var(--cover) * 0.89);
-  margin-top: calc(var(--cover) * -0.445);
-  transition: transform var(--mc-slide);
+  top: 16px;
+  left: 16px;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--page) 82%, transparent);
+  color: var(--text);
+  font-family: "DM Mono", monospace;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  backdrop-filter: blur(8px);
 }
 
-.music-card.is-playing .mc-vinyl-slide {
-  transform: translateX(calc(var(--cover) * 0.2));
+.project-info {
+  display: flex;
+  min-height: 258px;
+  flex-direction: column;
+  padding: 24px;
 }
 
-.mc-vinyl {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: repeating-radial-gradient(circle, transparent 0, transparent calc(var(--cover) * 0.062), rgba(255, 255, 255, 0.07) calc(var(--cover) * 0.062), rgba(255, 255, 255, 0.07) calc(var(--cover) * 0.065)), #262626;
-  animation: mc-spin 3.2s linear infinite;
-  animation-play-state: paused;
+.project-featured .project-info {
+  justify-content: space-between;
+  min-height: 330px;
+  padding: 30px;
 }
 
-.mc-vinyl::after {
-  position: absolute;
-  inset: 31%;
-  border-radius: 50%;
-  background: url("cover.jpg") center / 260% no-repeat;
-  content: "";
+.project-meta {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-family: "DM Mono", monospace;
+  font-size: 9px;
 }
 
-.music-card.is-playing .mc-vinyl {
-  animation-play-state: running;
+.project-info h3 {
+  margin: 28px 0 10px;
+  font-size: 28px;
+  letter-spacing: -0.055em;
 }
 
-@keyframes mc-spin {
-  to { transform: rotate(360deg); }
+.project-featured .project-info h3 {
+  font-size: 38px;
 }
 
-.mc-text {
-  min-width: 0;
-  flex: 1;
-  margin-left: calc(var(--cover) * 0.34);
-  transition: margin-left var(--mc-slide);
-}
-
-.music-card.is-playing .mc-text {
-  margin-left: calc(var(--cover) * 0.53);
-}
-
-.mc-title,
-.mc-artist {
-  overflow: hidden;
+.project-info > p {
+  max-width: 520px;
   margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.project-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: auto;
+  padding-top: 28px;
+}
+
+.tech-list,
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.tech-list span {
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-family: "DM Mono", monospace;
+  font-size: 8px;
+}
+
+.project-links {
+  justify-content: flex-end;
+}
+
+.project-links a {
+  color: var(--accent);
   font-size: 11px;
-  line-height: 1.5;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.mc-title {
-  color: var(--mc-title);
   font-weight: 800;
-}
-
-.mc-artist {
-  margin-top: 4px;
-  color: var(--mc-artist);
-  font-size: 10px;
-}
-
-.mc-toggle {
-  display: grid;
-  width: 37px;
-  height: 37px;
-  flex: none;
-  place-items: center;
-  margin-left: 12px;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: var(--mc-btn-bg);
-  color: var(--mc-btn-icon);
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.15s ease;
-}
-
-.mc-toggle:hover {
-  background: var(--mc-btn-bg-hover);
-}
-
-.mc-toggle:active {
-  transform: scale(0.94);
-}
-
-.mc-toggle svg {
-  width: 100%;
-  height: 100%;
-}
-
-.mc-toggle polygon {
-  fill: currentColor;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linejoin: round;
+  white-space: nowrap;
 }
 
 .connect-section {
@@ -846,11 +832,32 @@ h2 {
     padding: 16px;
   }
 
-  .listen-section {
-    align-items: flex-start;
-    flex-direction: column;
-    margin-bottom: 75px;
-    padding: 30px;
+  .projects-section {
+    padding-top: 68px;
+    padding-bottom: 72px;
+  }
+
+  .project-featured {
+    grid-template-columns: 1fr;
+  }
+
+  .project-preview {
+    min-height: 250px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .project-card:not(.project-featured) .project-preview {
+    height: auto;
+    aspect-ratio: 5 / 3;
+  }
+
+  .project-featured .project-preview {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .project-featured .project-info {
+    min-height: 290px;
   }
 }
 
@@ -988,32 +995,42 @@ h2 {
     padding: 19px;
   }
 
-  .listen-section {
-    gap: 28px;
-    margin-bottom: 70px;
-    padding: 24px 18px;
+  .projects-section {
+    padding-top: 62px;
+    padding-bottom: 64px;
   }
 
-  .listen-copy h2 {
-    font-size: 34px;
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 28px;
   }
 
-  .music-card {
-    --cover: 74px;
+  .project-featured {
+    grid-column: auto;
   }
 
-  .mc-text {
-    margin-left: calc(var(--cover) * 0.29);
+  .project-preview {
+    min-height: 210px;
   }
 
-  .music-card.is-playing .mc-text {
-    margin-left: calc(var(--cover) * 0.43);
+  .project-featured .project-info,
+  .project-info {
+    min-height: 250px;
+    padding: 20px;
   }
 
-  .mc-toggle {
-    width: 34px;
-    height: 34px;
-    margin-left: 8px;
+  .project-featured .project-info h3 {
+    font-size: 30px;
+  }
+
+  .project-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .project-links {
+    justify-content: flex-start;
   }
 
   .connect-section {
